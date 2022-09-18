@@ -1,0 +1,282 @@
+# Listing of Parameters
+# ---------------------
+subsection Discretization
+  subsection Distributed parameter field
+    set Coarsening fraction                 = 0.05
+    set Finite element                      = discontinuous constant
+    set Initial refinement                  = 0
+
+    # The lower bound for the dye concentration. Should be bigger than zero to
+    # make physical sense.
+    set Lower bound                         = 0.0001                 # default: 0
+
+    # A limit on the number of cells we want to have in the parameter
+    # discretization. If we approach or exceed this number of cells, the
+    # algorithm tries to refine so that we reach this number, but it is clear
+    # that this is only going to be an approximation
+    set Maximal number of cells             = 1000000000
+    set Output grids                        = false
+    set Refinement fraction                 = 0.4                    # default: 0.30
+
+    # A sequence of characters 'g' and 'm', which are interpreted from left to
+    # right. A 'g' indicates global refinement, an 'm' indicates refinement
+    # towards the measurement part of the boundary.
+    set Refinements on measurement boundary = g                      # default: 
+    set Regularization functional           = L2 norm
+
+    # The initial value of the regularization parameter
+    set Regularization parameter            = 1e-7                   # default: 1e10
+
+    # The upper bound for the dye concentration. Typical values for the upper
+    # bound are between 0.1 and 2.
+    set Upper bound                         = 0.02                   # default: 2.5
+
+    # Whether we shall use the information content associated with each
+    # parameter degree of freedom to adjust regularization of individual
+    # parameters
+    set Use information for regularization  = false
+    set Write refinement indicators         = false
+
+
+    subsection Regularization strategy
+      # The minimal ratio of data to model misfit that we would like to keep,
+      # by reducing the regularization parameter
+      set Minimal misfit ratio = 3
+
+      # Definition of the strategy by which the regularization parameter shall
+      # be modified as iterations proceed
+      set Strategy             = reduce with misfit # default: fixed
+    end
+
+  end
+
+  subsection Experiment description
+    subsection Measurement representation
+      # Since experiments have unknown optical transmission properties of
+      # camera, lenses, etc, the measurements we get have an unknown amplitude
+      # and are only known up to an unknown factor. This can be dealt with
+      # using referenced misfit functions to scale this unknown factor out, or
+      # by multiplying the data with a guessed value of this factor. This
+      # parameter denotes this value. It is only used for experimental data
+      # read in from file.
+      set Experimental scaling factor = 1
+
+      # Whether measurements are to be obtained a) from synthetic data, or b)
+      # from files that describe actual measurements.
+      set Measurement type            = synthetic
+
+
+      subsection Synthetic data
+        set Finite element            = linear
+        set Noise level               = 1e10
+        set Noise type                = additive
+        set Output projected solution = false
+
+        # A multiplication factor for the computed values of synthetic
+        # measurements. This can be used to test referenced measurement
+        # schemes, in analogy to the 'Experiment description|Measurement
+        # representation|Experimental scaling factor' parameter.
+        set Unknown source amplitude  = 1
+
+        # The corresponding phase for the 'Unknown source amplitude' value.
+        set Unknown source phase      = 0
+      end
+
+    end
+
+  end
+
+  subsection Tomography slave
+    # Fraction of cells to be coarsened in each mesh refinement step.
+    set Coarsening fraction                 = 0.05
+
+    # A comma-separated list listing evaluation operations to be done at the
+    # end of each iteration.
+    set Evaluations                         = 
+
+    # The kind of elements to be used for the state equation and adjoint
+    # variable.
+    set Finite element                      = linear
+
+    # Whether graphical output should be completely inhibted.
+    set Inhibit output                      = false
+
+    # Number of initial, global refinement steps of the state mesh.
+    set Initial refinement                  = 0
+
+    # A limit on the number of cells we want to have in each experiment. If we
+    # approach or exceed this number of cells, the algorithm tries to refine
+    # so that we reach this number, but it is clear that this is only going to
+    # be an approximation. In particular, since the state discretization
+    # always need to be finer than the parameter mesh, the limit can't be hard
+    # unless the parameter mesh also has an upper bound.
+    set Maximal number of cells             = 1000000000
+
+    # Name of a weight function to be used in the misfit functional. This may
+    # include simple masks such as a circular mask, or more complex criteria
+    # such as modulation depth measurements obtained during experiments.
+    set Measurement weights                 = 3.5cm circle
+
+    # Name of the misfit functional to be used in the minimization.
+    set Misfit functional                   = L2 boundary norm # default: L2 norm
+
+    # Whether grids should be output to a file separately of the solutions.
+    set Output grids                        = false
+
+    # Whether we shall output only real and imaginary part, or also
+    # magnitude/phase of the solution variables
+    set Output magnitude and phase          = true             # default: false
+
+    # Whether the slave object should pass down mesh refinement criteria for
+    # refinement of the parameter mesh.
+    set Pass parameter indicators           = none
+
+    # Name of the refinement criterion used for the mesh on which the state
+    # and adjoint variables are discretized.
+    set Refinement criterion                = grad grad u
+
+    # Fraction of cells to be refined in each mesh refinement step.
+    set Refinement fraction                 = 0.35             # default: 0.30
+
+    # A sequence of characters 'g' and 'm', which are interpreted from left to
+    # right. A 'g' indicates global refinement, an 'm' indicates refinement
+    # towards the measurement part of the boundary.
+    set Refinements on measurement boundary = gmg              # default: 
+
+    # Whether the degrees of freedom shall be re-sorted using the CMK
+    # algorithm. This affects some preconditioners, but should not make much
+    # of a difference since we use a sparse direct solver anyway.
+    set Renumber dofs by Cuthill-McKee      = false
+  end
+
+end
+
+
+subsection Experiment description
+  # A name for a function that describes the known right hand side of the
+  # inverse problem. This includes both predefined functions such as a
+  # gaussian, concentric circles, etc, as well as source descriptions measured
+  # in actual experiments.
+  set Forcing mode = gaussian # default: point on surface
+
+
+  subsection Measurement representation
+    # Since experiments have unknown optical transmission properties of
+    # camera, lenses, etc, the measurements we get have an unknown amplitude
+    # and are only known up to an unknown factor. This can be dealt with using
+    # referenced misfit functions to scale this unknown factor out, or by
+    # multiplying the data with a guessed value of this factor. This parameter
+    # denotes this value. It is only used for experimental data read in from
+    # file.
+    set Experimental scaling factor = 1
+
+    # Whether measurements are to be obtained a) from synthetic data, or b)
+    # from files that describe actual measurements.
+    set Measurement type            = synthetic
+
+
+    subsection Synthetic data
+      set Finite element            = linear
+      set Noise level               = 0.0            # default: 1e10
+      set Noise type                = multiplicative # default: additive
+      set Output projected solution = false
+
+      # A multiplication factor for the computed values of synthetic
+      # measurements. This can be used to test referenced measurement schemes,
+      # in analogy to the 'Experiment description|Measurement
+      # representation|Experimental scaling factor' parameter.
+      set Unknown source amplitude  = 1
+
+      # The corresponding phase for the 'Unknown source amplitude' value.
+      set Unknown source phase      = 0
+    end
+
+  end
+
+end
+
+
+subsection Global options
+  # A name that describes the geometry to be used.
+  set Coarse mesh           = 8x8x4         # default: square
+
+  # The name of a target description. Target descriptions are used when a)
+  # computing synthetic data, and b) to compute the error between the true
+  # value and a reconstruction.
+  set Data                  = single target
+
+  # The overall number of independent experiments.
+  set Number of experiments = 1
+
+  # The name of the directory to which output is going to be written.
+  set Output directory      = .             # default: data
+
+  # The format for graphical output.
+  set Output format         = vtk           # default: gnuplot
+end
+
+
+subsection Newton method
+  # The maximal number of iterations performed to solve the Schur complement
+  # system. If this number is exceeded, the iterative solve is considered to
+  # have failed, and a direct solve is attempted.
+  set Max inner CG iterations      = 3000  # default: 100
+
+  # The maximal number of nonlinear iterations.
+  set Maximal number of iterations = 1
+
+  # The interval between successive nonlinear iterations where graphical
+  # output is to be generated. Graphical output is always generated in the
+  # iteration before a mesh is refined.
+  set Output step interval         = 1
+
+  # A reduction factor by which we would like to reduce the nonlinear residual
+  # before the mesh is refined again. If we can't achieve this reduction, for
+  # example because nonlinear iterations stall, then the mesh is refined
+  # anyway to enlarge the search space.
+  set Reduction goal               = 1e-3  # default: 0.001
+
+  # The iterative or direct solver that is to be used in solving the Schur
+  # complement system.
+  set Solver type                  = cg
+
+  # The measurement misfit that, if reached, is considered to be sufficient to
+  # stop nonlinear iterations and call the solution converged.
+  set Target measurement misfit    = 0
+
+  # Whether or not to write the right hand side vector of the Schur complement
+  # equations to disk.
+  set Write Schur rhs              = false
+
+  # Whether or not to write the full Hessian matrix, i.e. the Schur complement
+  # matrix, to disk in each iteration. Computing the Hessian matrix is a very
+  # expensive procedure.
+  set Write hessian                = false
+
+
+  subsection Mesh refinement details
+    # Residual reduction requires on initial mesh
+    set Initial reduction           = 1e-10 # default: 0.01
+
+    # Maximal number of steps to be done on the first mesh
+    set Max initial steps           = 4     # default: 5
+
+    # Minimal number of steps to be done on the first mesh
+    set Min initial steps           = 2     # default: 1
+
+    # Minimal average step length to be obtained over three steps or mesh
+    # refinement is forced
+    set Minimal average step length = 0.25
+
+    # Minimal step length; if smaller than this value, we force mesh
+    # refinement
+    set Minimal step length         = 0.15
+
+    # Reduction in residual on the present mesh over the previous one before
+    # we can do the next mesh refinement step.
+    set Reduction per mesh          = 1e-4  # default: 0.84089642
+  end
+
+end
+
+

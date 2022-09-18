@@ -1,0 +1,112 @@
+&seq_infodata_inparm
+  case_name     = 'casespec '
+  case_desc     = 'UNSET '
+  model_version = 'cesm1_0_2 '
+  username      = 'specuser '
+  hostname      = 'specmachine '
+  timing_dir    = './'
+  tchkpt_dir    = './'
+  start_type    = 'startup'
+  brnch_retain_casename = .false.
+  info_debug    = 1
+  bfbflag       = .false.
+  orb_iyear_ad  =  1990
+  flux_epbal    = 'ocn'
+  flux_albav    = .true.
+  samegrid_al   = .true.
+  samegrid_ro   = .false.
+  samegrid_ao   = .false.
+  shr_map_dopole = .true.
+  npfix         = .true.
+  aoflux_grid   = 'ocn'
+  ocean_tight_coupling = .false.
+  cpl_cdf64     = .true.
+  do_budgets    = .true.
+  do_histinit   = .false.
+  budget_inst   = 0
+  budget_daily  = 0
+  budget_month  = 1
+  budget_ann    = 1
+  budget_ltann  = 1
+  budget_ltend  = 0
+  histaux_a2x     = .false.
+  histaux_a2x3hr  = .false.
+  histaux_a2x3hrp = .false.
+  histaux_a2x24hr = .false.
+  histaux_l2x     = .false.
+  histaux_r2x     = .false.
+  drv_threading = .false.
+  eps_frac      = 1.0e-02
+  eps_amask     = 1.0e-13
+  eps_agrid     = 1.0e-12
+  eps_aarea     = 9.0e-07
+  eps_omask     = 1.0e-06
+  eps_ogrid     = 1.0e-02
+  eps_oarea     = 1.0e-01
+   
+/ 
+&seq_timemgr_inparm
+  calendar       = 'NO_LEAP'
+  atm_cpl_dt     = 21600
+  lnd_cpl_dt     = 21600
+  ocn_cpl_dt     = 86400
+  ice_cpl_dt     = 21600
+  glc_cpl_dt     = 86400
+  start_ymd      =  00010101
+  start_tod      = 0
+  stop_option    ='ndays'
+  stop_n         = 1
+  stop_ymd       = -999
+  restart_option ='ndays'
+  restart_n      = 1
+  restart_ymd    = -999
+  end_restart    = .false.
+  history_option ='never'
+  history_n      = -999
+  history_ymd    = -999
+  histavg_option ='never'
+  histavg_n      = -999
+  histavg_ymd    = -999
+  tprof_option   ='never'
+  tprof_n        = -999
+  tprof_ymd      = -999
+/
+&ccsm_pes
+  atm_ntasks   = 1
+  atm_nthreads = 1 
+  atm_rootpe   = 0
+  atm_pestride = 1
+  lnd_ntasks   = 1
+  lnd_nthreads = 1 
+  lnd_rootpe   = 0
+  lnd_pestride = 1
+  ice_ntasks   = 1
+  ice_nthreads = 1 
+  ice_rootpe   = 0
+  ice_pestride = 1
+  ocn_ntasks   = 1
+  ocn_nthreads = 1 
+  ocn_rootpe   = 0
+  ocn_pestride = 1
+  glc_ntasks   = 1
+  glc_nthreads = 1 
+  glc_rootpe   = 0
+  glc_pestride = 1
+  cpl_ntasks   = 1
+  cpl_nthreads = 1 
+  cpl_rootpe   = 0
+  cpl_pestride = 1
+/
+&prof_inparm
+  profile_disable = .false.
+  profile_barrier = .false.
+  profile_single_file = .false.
+  profile_depth_limit = 4
+  profile_detail_limit = 0
+/
+&pio_inparm
+  cpl_io_stride   =  4
+  cpl_io_numtasks = -1
+  cpl_io_typename = 'netcdf'
+  cpl_io_root     =  1
+/

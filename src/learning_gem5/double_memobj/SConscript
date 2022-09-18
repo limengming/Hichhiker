@@ -1,0 +1,9 @@
+Import('*')
+
+
+
+SimObject('DoubleMemobj.py')
+
+Source('double_memobj.cc')
+
+DebugFlag('DoubleMemobj')
