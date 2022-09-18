@@ -1,0 +1,9 @@
+Import('*')
+
+
+
+SimObject('ShadowBlock.py')
+
+Source('shadow_block.cc')
+
+DebugFlag('ShadowBlock')

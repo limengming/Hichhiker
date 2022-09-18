@@ -1,0 +1,9 @@
+Import('*')
+
+
+
+SimObject('ForkPathShuffle.py')
+
+Source('fork_path_shuffle.cc')
+
+DebugFlag('ForkPathShuffle')

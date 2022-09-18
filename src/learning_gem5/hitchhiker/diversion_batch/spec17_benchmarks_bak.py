@@ -1,0 +1,591 @@
+# import m5
+# from m5.objects import *
+ 
+# # These three directory paths are not currently used.
+# gem5_dir = '/root/gem5'
+# spec_dir = '/root/cpu2017'
+# out_dir = '/root/specResult'
+ 
+# x86_suffix = '_base.mytest-m64'
+
+# #temp
+# binary_dir = spec_dir+'/benchspec/CPU/'
+# data_dir = spec_dir+'/benchspec/CPU/'
+
+
+# #500.perlbench_r
+# perlbench_r = Process() 
+# perlbench_r.executable = binary_dir + '500.perlbench_r/exe/perlbench_r_base.mytest-m64'
+# data = data_dir + '500.perlbench_r/data/test/input/makerand.pl'
+# perlbench_r.cmd = [perlbench_r.executable] + [' -I. -I./lib '] + [data]
+
+# #600.perlbench_s
+# perlbench_s = Process()
+# perlbench_s.executable = binary_dir + '600.perlbench_s/exe/perlbench_s_base.mytest-m64'
+# data = data_dir + '500.perlbench_r/data/test/input/makerand.pl'
+# perlbench_s.cmd = [perlbench_s.executable] + [' -I. -I./lib '] + [data]
+
+# #502.gcc_r
+# gcc_r = Process()
+# gcc_r.executable =  binary_dir + '502.gcc_r/exe/cpugcc_r_base.mytest-m64'
+# data = data_dir + '502.gcc_r/data/test/input/t1.c'
+# output = data_dir + '502.gcc_r/data/test/output/t1.opts-O3_-finline-limit_50000.s'
+# gcc_r.cmd = [gcc_r.executable] + [' '] + [data] + [' -o3 -finline-limit=50000 -o ',output]
+
+# #602.gcc_s
+# gcc_s = Process()
+# gcc_s.executable =  binary_dir+'602.gcc_s/exe/sgcc_base.mytest-m64'
+# data = data_dir + '502.gcc_r/data/test/input/t1.c'
+# output = data_dir + '502.gcc_r/data/test/output/t1.opts-O3_-finline-limit_50000.s'
+# gcc_s.cmd = [gcc_s.executable] + [' '] + [data] + [' -o3 -finline-limit=50000 -o ',output]
+
+# #505.mcf_r
+# mcf_r = Process() 
+# mcf_r.executable = binary_dir + '505.mcf_r/exe/mcf_r_base.mytest-m64'
+# data = data_dir + '505.mcf_r/data/test/input/inp.in'
+# mcf_r.cmd = [mcf_r.executable] + [data]
+
+# #605.mcf_s
+# mcf_s = Process() 
+# mcf_s.executable = binary_dir + '605.mcf_s/exe/mcf_s_base.mytest-m64'
+# data = data_dir + '505.mcf_r/data/test/input/inp.in'
+# mcf_s.cmd = [mcf_s.executable] + [data]
+
+# #520.omnetpp_r 
+# omnetpp_r = Process() 
+# omnetpp_r.executable = binary_dir + '520.omnetpp_r/exe/omnetpp_r_base.mytest-m64'
+# omnetpp_r.cmd = [omnetpp_r.executable]+[' -c General -r 0 ']
+
+# #620.omnetpp_s 
+# omnetpp_s = Process() 
+# omnetpp_s.executable = binary_dir + '620.omnetpp_s/exe/omnetpp_s_base.mytest-m64'
+# omnetpp_s.cmd = [omnetpp_s.executable]+[' -c General -r 0 ']
+
+# #523.xalancbmk_r  
+# xalancbmk_r = Process() 
+# xalancbmk_r.executable = binary_dir + '523.xalancbmk_r/exe/cpuxalan_r_base.mytest-m64'
+# data1 = data_dir + '523.xalancbmk_r/data/test/input/test.xml '
+# data2 = data_dir + '523.xalancbmk_r/data/test/input/xalanc.xsl'
+# xalancbmk_r.cmd = [xalancbmk_r.executable] + [' -v '] + [data1] + [data2]
+
+# #623.xalancbmk_s  
+# xalancbmk_s = Process() 
+# xalancbmk_s.executable = binary_dir + '623.xalancbmk_s/exe/xalancbmk_s_base.mytest-m64'
+# data1 = data_dir + '523.xalancbmk_r/data/test/input/test.xml '
+# data2 = data_dir + '523.xalancbmk_r/data/test/input/xalanc.xsl'
+# xalancbmk_s.cmd = [xalancbmk_s.executable] + [' -v '] + [data1] + [data2]
+
+# #525.x264_r   
+# x264_r = Process() 
+# x264_r.executable = binary_dir + '525.x264_r/exe/x264_r_base.mytest-m64'
+# data = data_dir + '525.x264_r/data/test/input/BuckBunny.264'
+# x264_r.cmd = [x264_r.executable] + [' --dumpyuv 50 --frames 156 -o ' , data ,' BuckBunny.yuv 1280x720 ' ]
+
+# #625.x264_s   
+# x264_s = Process() 
+# x264_s.executable = binary_dir + '625.x264_s/exe/x264_s_base.mytest-m64'
+# data = data_dir + '525.x264_r/data/test/input/BuckBunny.264'
+# x264_s.cmd = [x264_s.executable] + [' --dumpyuv 50 --frames 156 -o ' , data ,' BuckBunny.yuv 1280x720 ' ]
+
+# #531.deepsjeng_r 
+# deepsjeng_r = Process() 
+# deepsjeng_r.executable = binary_dir + '531.deepsjeng_r/exe/deepsjeng_r_base.mytest-m64'
+# data = data_dir + '531.deepsjeng_r/data/test/input/test.txt'
+# deepsjeng_r.cmd = [deepsjeng_r.executable] + [' '] + [data]
+
+# #631.deepsjeng_s 
+# deepsjeng_s = Process() 
+# deepsjeng_s.executable = binary_dir + '631.deepsjeng_s/exe/deepsjeng_s_base.mytest-m64'
+# data = data_dir + '631.deepsjeng_s/data/test/input/test.txt'
+# deepsjeng_s.cmd = [deepsjeng_s.executable] + [' '] + [data]
+
+# #541.leela_r  
+# leela_r = Process() 
+# leela_r.executable = binary_dir + '541.leela_r/exe/leela_r_base.mytest-m64'
+# data = data_dir + '541.leela_r/data/test/input/test.sgf'
+# leela_r.cmd = [leela_r.executable] + [' '] + [data]
+
+# #641.leela_s  
+# leela_s = Process() 
+# leela_s.executable = binary_dir + '641.leela_s/exe/leela_s_base.mytest-m64'
+# data = data_dir + '541.leela_r/data/test/input/test.sgf'
+# leela_s.cmd = [leela_s.executable] + [' '] + [data]
+
+# #548.exchange2_r   
+# exchange2_r = Process() 
+# exchange2_r.executable = binary_dir + '548.exchange2_r/exe/exchange2_r_basytest-m64'
+# exchange2_r.cmd = [exchange2_r.executable] + [' 0']
+
+# #648.exchange2_s   
+# exchange2_s = Process() 
+# exchange2_s.executable = binary_dir + '648.exchange2_s/exe/exchange2_s_basytest-m64'
+# exchange2_s.cmd = [exchange2_s.executable] + [' 0']
+
+# #557.xz_r   
+# xz_r = Process() 
+# xz_r.executable = binary_dir + '557.xz_r/exe/xz_r_base.mytest-m64'
+# xz_r.cmd = [xz_r.executable] + [' cpu2006docs.tar.xz 4 055ce243071129412e9dd0b3b69a21654033a9b723d874b2015c774fac1553d9713be561ca86f74e4f16f22e664fc17a79f30caa5ad2c04fbc447549c2810fae 1548636 1555348 0 ']
+
+# #657.xz_s   
+# xz_s = Process() 
+# xz_s.executable = binary_dir + '657.xz_s/exe/xz_s_base.mytest-m64'
+# xz_s.cmd = [xz_s.executable] + [' cpu2006docs.tar.xz 4 055ce243071129412e9dd0b3b69a21654033a9b723d874b2015c774fac1553d9713be561ca86f74e4f16f22e664fc17a79f30caa5ad2c04fbc447549c2810fae 1548636 1555348 0 ']
+
+# #998.specrand_is    
+# specrand_is = Process() 
+# specrand_is.executable = binary_dir + '998.specrand_is/exe/specrand_is_base.mytest-m64'
+# specrand_is.cmd = [specrand_is.executable] + [' 324342 24239 ']
+
+# #999.specrand_ir    
+# specrand_ir = Process() 
+# specrand_ir.executable = binary_dir + '999.specrand_ir/exe/specrand_ir_base.mytest-m64'
+# specrand_ir.cmd = [specrand_ir.executable] + [' 324342 24239 ']
+
+# #503.bwaves_r    
+# bwaves_r = Process() 
+# bwaves_r.executable = binary_dir + '503.bwaves_r/exe/bwaves_r_base.mytest-m64'
+# bwaves_r.cmd = [bwaves_r.executable] + [' bwaves_1']
+# bwaves_r.input = data_dir + '503.bwaves_r/data/test/input/bwaves_1.in'
+
+# #603.bwaves_s    
+# bwaves_s = Process() 
+# bwaves_s.executable = binary_dir + '603.bwaves_s/exe/speed_bwaves_base.mytest-m64'
+# bwaves_s.cmd = [bwaves_s.executable] + [' bwaves_1']
+# bwaves_s.input = data_dir + '503.bwaves_r/data/test/input/bwaves_1.in'
+
+# #507.cactuBSSN_r   
+# cactuBSSN_r = Process() 
+# cactuBSSN_r.executable = binary_dir + '507.cactuBSSN_r/exe/cactusBSSN_r_base.mytest-m64'
+# data = data_dir + '507.cactuBSSN_r/data/test/input/spec_test.par'
+# cactuBSSN_r.cmd = [cactuBSSN_r.executable] + [' '] + [data]
+
+# #607.cactuBSSN_s   
+# cactuBSSN_s = Process() 
+# cactuBSSN_s.executable = binary_dir + '607.cactuBSSN_s/exe/cactusBSSN_s_base.mytest-m64'
+# data = data_dir + '507.cactuBSSN_r/data/test/input/spec_test.par'
+# cactuBSSN_s.cmd = [cactuBSSN_s.executable] + [' '] + [data]
+
+# #508.namd_r   
+# namd_r = Process() 
+# namd_r.executable = binary_dir + '508.namd_r/exe/namd_r_base.mytest-m64'
+# data = data_dir + '508.namd_r/data/test/output/apoa1.test.output'
+# namd_r.cmd = [namd_r.executable] + [' --input apoa1.input --iterations 1 --output '] + [data]
+
+# #510.parest_r   
+# parest_r = Process() 
+# parest_r.executable = binary_dir + '510.parest_r/exe/parest_r_base.mytest-m64'
+# data = data_dir + '510.parest_r/data/test/input/test.prm'
+# parest_r.cmd = [parest_r.executable] + [' '] + [data]
+
+# #511.povray_r   
+# povray_r = Process() 
+# povray_r.executable = binary_dir + '511.povray_r/exe/povray_r_base.mytest-m64'
+# data = data_dir + '511.povray_r/data/test/input/SPEC-benchmark-test.ini'
+# povray_r.cmd = [povray_r.executable] + [' '] + [data]
+
+# #519.lbm_r   
+# lbm_r = Process() 
+# lbm_r.executable = binary_dir + '519.lbm_r/exe/lbm_r_base.mytest-m64'
+# data = data_dir + '519.lbm_r/data/test/input/100_100_130_cf_a.of'
+# lbm_r.cmd = [lbm_r.executable] + [' 20 reference.dat 0 1 '] + [data]
+
+# #619.lbm_s   
+# lbm_s = Process() 
+# lbm_s.executable = binary_dir + '619.lbm_s/exe/lbm_s_base.mytest-m64'
+# data = data_dir + '619.lbm_s/data/test/input/200_200_260_ldc.of'
+# lbm_s.cmd = [lbm_s.executable] + [' 20 reference.dat 0 1 '] + [data]
+
+# #521.wrf_r     
+# wrf_r = Process() 
+# wrf_r.executable = binary_dir + '521.wrf_r/exe/wrf_r_base.mytest-m64'
+# wrf_r.cmd = [wrf_r.executable]
+
+# #621.wrf_s     
+# wrf_s = Process() 
+# wrf_s.executable = binary_dir + '621.wrf_s/exe/wrf_s_base.mytest-m64'
+# wrf_s.cmd = [wrf_s.executable]
+
+# #526.blender_r   
+# blender_r = Process() 
+# blender_r.executable = binary_dir + '526.blender_r/exe/blender_r_base.mytest-m64 '
+# data = data_dir + '526.blender_r/data/test/input/cube.blend'
+# blender_r.cmd = [blender_r.executable] + [data] + [' --render-output cube_ --threads 1 -b -F RAWTGA -s 1 -e 1 -a ']
+
+# #527.cam4_r      
+# cam4_r = Process() 
+# cam4_r.executable = binary_dir + '527.cam4_r/exe/cam4_r_base.mytest-m64'
+# cam4_r.cmd = [cam4_r.executable]
+
+# #627.cam4_s      
+# cam4_s = Process() 
+# cam4_s.executable = binary_dir + '627.cam4_s/exe/cam4_s_base.mytest-m64'
+# cam4_s.cmd = [cam4_s.executable]
+
+# #628.pop2_s      
+# pop2_s = Process() 
+# pop2_s.executable = binary_dir + '628.pop2_s/exe/speed_pop2_base.mytest-m64'
+# pop2_s.cmd = [pop2_s.executable]
+
+# #538.imagick_r    
+# imagick_r = Process() 
+# imagick_r.executable = binary_dir + '538.imagick_r/exe/imagick_r_base.mytest-m64'
+# data = data_dir + '538.imagick_r/data/test/input/test_input.tga'
+# imagick_r.cmd = [imagick_r.executable] + [' -limit disk 0 '] + [data] + [' -shear 25 -resize 640x480 -negate -alpha Off test_output.tga ']
+
+# #638.imagick_s    
+# imagick_s = Process() 
+# imagick_s.executable = binary_dir + '638.imagick_s/exe/imagick_s_base.mytest-m64'
+# data = data_dir + '538.imagick_r/data/test/input/test_input.tga'
+# imagick_s.cmd = [imagick_s.executable] + [' -limit disk 0 '] + [data] + [' -shear 25 -resize 640x480 -negate -alpha Off test_output.tga ']
+
+# #544.nab_r     
+# nab_r = Process() 
+# nab_r.executable = binary_dir + '544.nab_r/exe/nab_r_base.mytest-m64 '
+# data = data_dir + '544.nab_r/data/test/input/hkrdenq'
+# nab_r.cmd = [nab_r.executable] + [data] + [' 1930344093 1000 ']
+
+# #644.nab_s     
+# nab_s = Process() 
+# nab_s.executable = binary_dir + '644.nab_s/exe/nab_s_base.mytest-m64 '
+# data = data_dir + '544.nab_r/data/test/input/hkrdenq'
+# nab_s.cmd = [nab_s.executable] + [data] + [' 1930344093 1000 ']
+
+# #549.fotonik3d_r       
+# fotonik3d_r = Process() 
+# fotonik3d_r.executable = binary_dir + '549.fotonik3d_r/exe/fotonik3d_r_base.mytest-m64'
+# fotonik3d_r.cmd = [fotonik3d_r.executable]
+
+# #649.fotonik3d_s       
+# fotonik3d_s = Process() 
+# fotonik3d_s.executable = binary_dir + '649.fotonik3d_s/exe/fotonik3d_s_base.mytest-m64'
+# fotonik3d_s.cmd = [fotonik3d_s.executable]
+
+# #554.roms_r     
+# roms_r = Process() 
+# roms_r.executable = binary_dir + '554.roms_r/exe/roms_r_base.mytest-m64'
+# roms_r.cmd = [roms_r.executable]
+# roms_r.input = data_dir + '554.roms_r/data/test/input/ocean_benchmark0.in.x'
+
+# #654.roms_s     
+# roms_s = Process() 
+# roms_s.executable = binary_dir + '654.roms_s/exe/sroms_base.mytest-m64'
+# roms_s.cmd = [roms_s.executable]
+# roms_s.input = data_dir + '554.roms_r/data/test/input/ocean_benchmark0.in.x'
+
+# #996.specrand_fs      
+# specrand_fs = Process() 
+# specrand_fs.executable = binary_dir + '996.specrand_fs/exe/specrand_fs_base.mytest-m64'
+# specrand_fs.cmd = [specrand_fs.executable] + [' 324342 24239 ']
+
+# #997.specrand_fr       
+# specrand_fr = Process() 
+# specrand_fr.executable = binary_dir + '997.specrand_fr/exe/specrand_fr_base.mytest-m64'
+# specrand_fr.cmd = [specrand_fr.executable] + [' 324342 24239 ']
+
+import m5
+from m5.objects import *
+ 
+# These three directory paths are not currently used.
+gem5_dir = '/root/gem5'
+spec_dir = '/root/cpu2017'
+out_dir = '/root/specResult'
+ 
+x86_suffix = '_base.mytest-m64'
+
+#temp
+binary_dir = spec_dir+'/benchspec/CPU/'
+data_dir = spec_dir+'/benchspec/CPU/'
+
+
+#500.perlbench_r
+perlbench_r = Process(pid = 500) 
+perlbench_r.executable = binary_dir + '500.perlbench_r/exe/perlbench_r_base.mytest-m64'
+data = data_dir + '500.perlbench_r/data/test/input/makerand.pl'
+# perlbench_r.cmd = [perlbench_r.executable] + [' -I. -I./lib '] + [data]
+perlbench_r.cmd = [perlbench_r.executable] + ['-I.','-I./lib',data]
+
+#600.perlbench_s
+perlbench_s = Process(pid = 600)
+perlbench_s.executable = binary_dir + '600.perlbench_s/exe/perlbench_s_base.mytest-m64'
+data = data_dir + '500.perlbench_r/data/test/input/makerand.pl'
+# perlbench_s.cmd = [perlbench_s.executable] + [' -I. -I./lib '] + [data]
+perlbench_s.cmd = [perlbench_s.executable] + ['-I.','-I./lib',data]
+
+#502.gcc_r
+gcc_r = Process(pid = 502)
+gcc_r.executable =  binary_dir + '502.gcc_r/exe/cpugcc_r_base.mytest-m64'
+data = data_dir + '502.gcc_r/data/test/input/t1.c'
+output = data_dir + '502.gcc_r/data/test/output/t1.opts-O3_-finline-limit_50000.s'
+# gcc_r.cmd = [gcc_r.executable] + [data] + [' -o3 -finline-limit=50000 -o ',output]
+gcc_r.cmd = [gcc_r.executable] + [data] + ['-O3','-finline-limit=50000','-o',output]
+
+#602.gcc_s
+gcc_s = Process(pid = 602)
+gcc_s.executable =  binary_dir+'602.gcc_s/exe/sgcc_base.mytest-m64'
+data = data_dir + '502.gcc_r/data/test/input/t1.c'
+output = data_dir + '502.gcc_r/data/test/output/t1.opts-O3_-finline-limit_50000.s'
+# gcc_s.cmd = [gcc_s.executable] + [data] + [' -o3 -finline-limit=50000 -o ',output]
+gcc_s.cmd = [gcc_s.executable] + [data] + ['-O3','-finline-limit=50000','-o',output]
+
+#505.mcf_r
+mcf_r = Process(pid = 505) 
+mcf_r.executable = binary_dir + '505.mcf_r/exe/mcf_r_base.mytest-m64'
+data = data_dir + '505.mcf_r/data/test/input/inp.in'
+mcf_r.cmd = [mcf_r.executable] + [data]
+
+#605.mcf_s
+mcf_s = Process(pid = 605) 
+mcf_s.executable = binary_dir + '605.mcf_s/exe/mcf_s_base.mytest-m64'
+data = data_dir + '505.mcf_r/data/test/input/inp.in'
+mcf_s.cmd = [mcf_s.executable] + [data]
+
+#520.omnetpp_r 
+omnetpp_r = Process(pid = 520) 
+omnetpp_r.executable = binary_dir + '520.omnetpp_r/exe/omnetpp_r_base.mytest-m64'
+# omnetpp_r.cmd = [omnetpp_r.executable]+[' -c General -r 0 ']
+omnetpp_r.cmd = [omnetpp_r.executable]+['-c', 'General', '-r', '0']
+
+#620.omnetpp_s 
+omnetpp_s = Process(pid = 620) 
+omnetpp_s.executable = binary_dir + '620.omnetpp_s/exe/omnetpp_s_base.mytest-m64'
+# omnetpp_s.cmd = [omnetpp_s.executable]+[' -c General -r 0 ']
+omnetpp_s.cmd = [omnetpp_s.executable]+['-c', 'General', '-r', '0']
+
+#523.xalancbmk_r  
+xalancbmk_r = Process(pid = 523) 
+xalancbmk_r.executable = binary_dir + '523.xalancbmk_r/exe/cpuxalan_r_base.mytest-m64'
+data1 = data_dir + '523.xalancbmk_r/data/test/input/test.xml '
+data2 = data_dir + '523.xalancbmk_r/data/test/input/xalanc.xsl'
+xalancbmk_r.cmd = [xalancbmk_r.executable] + ['-v'] + [data1] + [data2]
+
+#623.xalancbmk_s  
+xalancbmk_s = Process(pid = 623) 
+xalancbmk_s.executable = binary_dir + '623.xalancbmk_s/exe/xalancbmk_s_base.mytest-m64'
+data1 = data_dir + '523.xalancbmk_r/data/test/input/test.xml '
+data2 = data_dir + '523.xalancbmk_r/data/test/input/xalanc.xsl'
+xalancbmk_s.cmd = [xalancbmk_s.executable] + ['-v'] + [data1] + [data2]
+
+#525.x264_r   
+x264_r = Process(pid = 525) 
+x264_r.executable = binary_dir + '525.x264_r/exe/x264_r_base.mytest-m64'
+data = data_dir + '525.x264_r/data/test/input/BuckBunny.264'
+# x264_r.cmd = [x264_r.executable] + [' --dumpyuv 50 --frames 156 -o ' , data ,' BuckBunny.yuv 1280x720 ' ]
+x264_r.cmd = [x264_r.executable] + ['--dumpyuv', '50','--frames', '156','-o', data ,'BuckBunny.yuv', '1280x720']
+
+#625.x264_s   
+x264_s = Process(pid = 625) 
+x264_s.executable = binary_dir + '625.x264_s/exe/x264_s_base.mytest-m64'
+data = data_dir + '525.x264_r/data/test/input/BuckBunny.264'
+# x264_s.cmd = [x264_s.executable] + [' --dumpyuv 50 --frames 156 -o ' , data ,' BuckBunny.yuv 1280x720 ' ]
+x264_s.cmd = [x264_s.executable] + ['--dumpyuv', '50','--frames', '156','-o', data ,'BuckBunny.yuv', '1280x720']
+
+#531.deepsjeng_r 
+deepsjeng_r = Process(pid = 531) 
+deepsjeng_r.executable = binary_dir + '531.deepsjeng_r/exe/deepsjeng_r_base.mytest-m64'
+data = data_dir + '531.deepsjeng_r/data/test/input/test.txt'
+deepsjeng_r.cmd = [deepsjeng_r.executable] + [data]
+
+#631.deepsjeng_s 
+deepsjeng_s = Process(pid = 631) 
+deepsjeng_s.executable = binary_dir + '631.deepsjeng_s/exe/deepsjeng_s_base.mytest-m64'
+data = data_dir + '631.deepsjeng_s/data/test/input/test.txt'
+deepsjeng_s.cmd = [deepsjeng_s.executable] + [data]
+
+#541.leela_r  
+leela_r = Process(pid = 541) 
+leela_r.executable = binary_dir + '541.leela_r/exe/leela_r_base.mytest-m64'
+data = data_dir + '541.leela_r/data/test/input/test.sgf'
+leela_r.cmd = [leela_r.executable] + [data]
+
+#641.leela_s  
+leela_s = Process(pid = 641) 
+leela_s.executable = binary_dir + '641.leela_s/exe/leela_s_base.mytest-m64'
+data = data_dir + '541.leela_r/data/test/input/test.sgf'
+leela_s.cmd = [leela_s.executable] + [data]
+
+#548.exchange2_r   
+exchange2_r = Process(pid = 548) 
+exchange2_r.executable = binary_dir + '548.exchange2_r/exe/exchange2_r_basytest-m64'
+exchange2_r.cmd = [exchange2_r.executable] + ['0']
+
+#648.exchange2_s   
+exchange2_s = Process(pid = 648) 
+exchange2_s.executable = binary_dir + '648.exchange2_s/exe/exchange2_s_basytest-m64'
+exchange2_s.cmd = [exchange2_s.executable] + ['0']
+
+#557.xz_r   
+xz_r = Process(pid = 557) 
+xz_r.executable = binary_dir + '557.xz_r/exe/xz_r_base.mytest-m64'
+# xz_r.cmd = [xz_r.executable] + [' cpu2006docs.tar.xz 4 055ce243071129412e9dd0b3b69a21654033a9b723d874b2015c774fac1553d9713be561ca86f74e4f16f22e664fc17a79f30caa5ad2c04fbc447549c2810fae 1548636 1555348 0 ']
+data = data_dir + '557.xz_r/data/all/input/cpu2006docs.tar.xz'
+xz_r.cmd = [xz_r.executable] + [data, '4', '055ce243071129412e9dd0b3b69a21654033a9b723d874b2015c774fac1553d9713be561ca86f74e4f16f22e664fc17a79f30caa5ad2c04fbc447549c2810fae', '1548636', '1555348', '0']
+
+#657.xz_s   
+xz_s = Process(pid = 657) 
+xz_s.executable = binary_dir + '657.xz_s/exe/xz_s_base.mytest-m64'
+# xz_s.cmd = [xz_s.executable] + [' cpu2006docs.tar.xz 4 055ce243071129412e9dd0b3b69a21654033a9b723d874b2015c774fac1553d9713be561ca86f74e4f16f22e664fc17a79f30caa5ad2c04fbc447549c2810fae 1548636 1555348 0 ']
+data = data_dir + '557.xz_r/data/all/input/cpu2006docs.tar.xz'
+xz_s.cmd = [xz_s.executable] + [data, '4', '055ce243071129412e9dd0b3b69a21654033a9b723d874b2015c774fac1553d9713be561ca86f74e4f16f22e664fc17a79f30caa5ad2c04fbc447549c2810fae', '1548636', '1555348', '0']
+
+#998.specrand_is    
+specrand_is = Process(pid = 998) 
+specrand_is.executable = binary_dir + '998.specrand_is/exe/specrand_is_base.mytest-m64'
+# specrand_is.cmd = [specrand_is.executable] + [' 324342 24239 ']
+specrand_is.cmd = [specrand_is.executable] + ['324342', '24239']
+
+#999.specrand_ir    
+specrand_ir = Process(pid = 999) 
+specrand_ir.executable = binary_dir + '999.specrand_ir/exe/specrand_ir_base.mytest-m64'
+# specrand_ir.cmd = [specrand_ir.executable] + [' 324342 24239 ']
+specrand_ir.cmd = [specrand_ir.executable] + ['324342', '24239']
+
+#503.bwaves_r    
+bwaves_r = Process(pid = 503) 
+bwaves_r.executable = binary_dir + '503.bwaves_r/exe/bwaves_r_base.mytest-m64'
+bwaves_r.cmd = [bwaves_r.executable] + ['bwaves_1']
+bwaves_r.input = data_dir + '503.bwaves_r/data/test/input/bwaves_1.in'
+
+#603.bwaves_s    
+bwaves_s = Process(pid = 603) 
+bwaves_s.executable = binary_dir + '603.bwaves_s/exe/speed_bwaves_base.mytest-m64'
+bwaves_s.cmd = [bwaves_s.executable] + ['bwaves_1']
+bwaves_s.input = data_dir + '503.bwaves_r/data/test/input/bwaves_1.in'
+
+#507.cactuBSSN_r   
+cactuBSSN_r = Process(pid = 507) 
+cactuBSSN_r.executable = binary_dir + '507.cactuBSSN_r/exe/cactusBSSN_r_base.mytest-m64'
+data = data_dir + '507.cactuBSSN_r/data/test/input/spec_test.par'
+cactuBSSN_r.cmd = [cactuBSSN_r.executable] + [data]
+
+#607.cactuBSSN_s   
+cactuBSSN_s = Process(pid = 607) 
+cactuBSSN_s.executable = binary_dir + '607.cactuBSSN_s/exe/cactusBSSN_s_base.mytest-m64'
+data = data_dir + '507.cactuBSSN_r/data/test/input/spec_test.par'
+cactuBSSN_s.cmd = [cactuBSSN_s.executable] + [data]
+
+#508.namd_r   
+namd_r = Process(pid = 508) 
+namd_r.executable = binary_dir + '508.namd_r/exe/namd_r_base.mytest-m64'
+data = data_dir + '508.namd_r/data/test/output/apoa1.test.output'
+# namd_r.cmd = [namd_r.executable] + [' --input apoa1.input --iterations 1 --output '] + [data]
+namd_r.cmd = [namd_r.executable] + ['--input', 'apoa1.input','--iterations', '1','--output'] + [data]
+
+#510.parest_r   
+parest_r = Process(pid = 510) 
+parest_r.executable = binary_dir + '510.parest_r/exe/parest_r_base.mytest-m64'
+data = data_dir + '510.parest_r/data/test/input/test.prm'
+parest_r.cmd = [parest_r.executable] + [data]
+
+#511.povray_r   
+povray_r = Process(pid = 511) 
+povray_r.executable = binary_dir + '511.povray_r/exe/povray_r_base.mytest-m64'
+data = data_dir + '511.povray_r/data/test/input/SPEC-benchmark-test.ini'
+povray_r.cmd = [povray_r.executable] + [data]
+
+#519.lbm_r   
+lbm_r = Process(pid = 519) 
+lbm_r.executable = binary_dir + '519.lbm_r/exe/lbm_r_base.mytest-m64'
+data = data_dir + '519.lbm_r/data/test/input/100_100_130_cf_a.of'
+# lbm_r.cmd = [lbm_r.executable] + [' 20 reference.dat 0 1 '] + [data]
+lbm_r.cmd = [lbm_r.executable] + ['20', 'reference.dat', '0', '1'] + [data]
+
+#619.lbm_s   
+lbm_s = Process(pid = 619) 
+lbm_s.executable = binary_dir + '619.lbm_s/exe/lbm_s_base.mytest-m64'
+data = data_dir + '619.lbm_s/data/test/input/200_200_260_ldc.of'
+# lbm_s.cmd = [lbm_s.executable] + [' 20 reference.dat 0 1 '] + [data]
+lbm_s.cmd = [lbm_s.executable] + ['20', 'reference.dat', '0', '1'] + [data]
+
+#521.wrf_r     
+wrf_r = Process(pid = 521) 
+wrf_r.executable = binary_dir + '521.wrf_r/exe/wrf_r_base.mytest-m64'
+wrf_r.cmd = [wrf_r.executable]
+
+#621.wrf_s     
+wrf_s = Process(pid = 621) 
+wrf_s.executable = binary_dir + '621.wrf_s/exe/wrf_s_base.mytest-m64'
+wrf_s.cmd = [wrf_s.executable]
+
+#526.blender_r   
+blender_r = Process(pid = 526) 
+blender_r.executable = binary_dir + '526.blender_r/exe/blender_r_base.mytest-m64 '
+data = data_dir + '526.blender_r/data/test/input/cube.blend'
+# blender_r.cmd = [blender_r.executable] + [data] + [' --render-output cube_ --threads 1 -b -F RAWTGA -s 1 -e 1 -a ']
+blender_r.cmd = [blender_r.executable] + [data] + ['--render-output', 'cube_','--threads', '1','-b', '-F', 'RAWTGA', '-s', '1', '-e', '1', '-a']
+
+#527.cam4_r      
+cam4_r = Process(pid = 527) 
+cam4_r.executable = binary_dir + '527.cam4_r/exe/cam4_r_base.mytest-m64'
+cam4_r.cmd = [cam4_r.executable]
+
+#627.cam4_s      
+cam4_s = Process(pid = 627) 
+cam4_s.executable = binary_dir + '627.cam4_s/exe/cam4_s_base.mytest-m64'
+cam4_s.cmd = [cam4_s.executable]
+
+#628.pop2_s      
+pop2_s = Process(pid = 628) 
+pop2_s.executable = binary_dir + '628.pop2_s/exe/speed_pop2_base.mytest-m64'
+pop2_s.cmd = [pop2_s.executable]
+
+#538.imagick_r    
+imagick_r = Process(pid = 538) 
+imagick_r.executable = binary_dir + '538.imagick_r/exe/imagick_r_base.mytest-m64'
+data = data_dir + '538.imagick_r/data/test/input/test_input.tga'
+# imagick_r.cmd = [imagick_r.executable] + [' -limit disk 0 '] + [data] + [' -shear 25 -resize 640x480 -negate -alpha Off test_output.tga ']
+imagick_r.cmd = [imagick_r.executable] + ['-limit', 'disk', '0'] + [data] + ['-shear', '25', '-resize', '640x480', '-negate', '-alpha', 'Off', 'test_output.tga']
+
+#638.imagick_s    
+imagick_s = Process(pid = 638) 
+imagick_s.executable = binary_dir + '638.imagick_s/exe/imagick_s_base.mytest-m64'
+data = data_dir + '538.imagick_r/data/test/input/test_input.tga'
+# imagick_s.cmd = [imagick_s.executable] + [' -limit disk 0 '] + [data] + [' -shear 25 -resize 640x480 -negate -alpha Off test_output.tga ']
+imagick_s.cmd = [imagick_s.executable] + ['-limit', 'disk', '0'] + [data] + ['-shear', '25', '-resize', '640x480', '-negate', '-alpha', 'Off', 'test_output.tga']
+
+#544.nab_r     
+nab_r = Process(pid = 544) 
+nab_r.executable = binary_dir + '544.nab_r/exe/nab_r_base.mytest-m64 '
+data = data_dir + '544.nab_r/data/test/input/hkrdenq'
+# nab_r.cmd = [nab_r.executable] + [data] + [' 1930344093 1000 ']
+nab_r.cmd = [nab_r.executable] + [data] + ['1930344093', '1000']
+
+#644.nab_s     
+nab_s = Process(pid = 644) 
+nab_s.executable = binary_dir + '644.nab_s/exe/nab_s_base.mytest-m64 '
+data = data_dir + '544.nab_r/data/test/input/hkrdenq'
+# nab_s.cmd = [nab_s.executable] + [data] + [' 1930344093 1000 ']
+nab_s.cmd = [nab_s.executable] + [data] + ['1930344093', '1000']
+
+#549.fotonik3d_r       
+fotonik3d_r = Process(pid = 549) 
+fotonik3d_r.executable = binary_dir + '549.fotonik3d_r/exe/fotonik3d_r_base.mytest-m64'
+fotonik3d_r.cmd = [fotonik3d_r.executable]
+
+#649.fotonik3d_s       
+fotonik3d_s = Process(pid = 649) 
+fotonik3d_s.executable = binary_dir + '649.fotonik3d_s/exe/fotonik3d_s_base.mytest-m64'
+fotonik3d_s.cmd = [fotonik3d_s.executable]
+
+#554.roms_r     
+roms_r = Process(pid = 554) 
+roms_r.executable = binary_dir + '554.roms_r/exe/roms_r_base.mytest-m64'
+roms_r.cmd = [roms_r.executable]
+roms_r.input = data_dir + '554.roms_r/data/test/input/ocean_benchmark0.in.x'
+
+#654.roms_s     
+roms_s = Process(pid = 654) 
+roms_s.executable = binary_dir + '654.roms_s/exe/sroms_base.mytest-m64'
+roms_s.cmd = [roms_s.executable]
+roms_s.input = data_dir + '554.roms_r/data/test/input/ocean_benchmark0.in.x'
+
+#996.specrand_fs      
+specrand_fs = Process(pid = 996) 
+specrand_fs.executable = binary_dir + '996.specrand_fs/exe/specrand_fs_base.mytest-m64'
+# specrand_fs.cmd = [specrand_fs.executable] + [' 324342 24239 ']
+specrand_fs.cmd = [specrand_fs.executable] + ['324342', '24239']
+
+#997.specrand_fr       
+specrand_fr = Process(pid = 997) 
+specrand_fr.executable = binary_dir + '997.specrand_fr/exe/specrand_fr_base.mytest-m64'
+# specrand_fr.cmd = [specrand_fr.executable] + [' 324342 24239 ']
+specrand_fr.cmd = [specrand_fr.executable] + ['324342', '24239']

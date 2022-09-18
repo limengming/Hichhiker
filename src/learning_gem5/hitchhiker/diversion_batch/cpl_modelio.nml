@@ -1,0 +1,5 @@
+&modelio
+   diri    = "./cpl   "
+   diro    = "./   "
+   logfile = "cpl.log  "
+/

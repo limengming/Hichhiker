@@ -1,0 +1,8 @@
+Import('*')
+
+SimObject('HitchhikerD.py')
+
+Source('hitchhikerD.cc')
+
+DebugFlag('HitchhikerD')
+DebugFlag('InstProgress')
